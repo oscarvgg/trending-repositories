@@ -47,22 +47,23 @@ final public class RemoteDataStore {
         let dataTask = session.dataTask(
             with: request,
             completionHandler: { (data, response, error) -> Void in
-            
-                guard let data = data else {
-                    return onComplete(RemoteResult<Page<Repository>>.error(error!))
+                DispatchQueue.main.async {
+                    guard let data = data else {
+                        return onComplete(RemoteResult<Page<Repository>>.error(error!))
+                    }
+                    
+                    do {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .iso8601
+                        let repo = try decoder.decode(Page<Repository>.self,
+                                                      from: data)
+                        return onComplete(RemoteResult.succeeded(result: repo))
+                        
+                    } catch let error {
+                        
+                        return onComplete(RemoteResult<Page<Repository>>.error(error))
+                    }
                 }
-                
-                do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .iso8601
-                    let repo = try decoder.decode(Page<Repository>.self,
-                                                        from: data)
-                    return onComplete(RemoteResult.succeeded(result: repo))
-                    
-                } catch let error {
-                    
-                    return onComplete(RemoteResult<Page<Repository>>.error(error))
-                }        
         })
         
         dataTask.resume()

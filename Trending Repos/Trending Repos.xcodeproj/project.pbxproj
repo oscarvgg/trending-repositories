@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		551A30DD20D7FFA9003637A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A30DC20D7FFA9003637A8 /* AppDelegate.swift */; };
-		551A30DF20D7FFA9003637A8 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A30DE20D7FFA9003637A8 /* MasterViewController.swift */; };
+		551A30DF20D7FFA9003637A8 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A30DE20D7FFA9003637A8 /* RepositoriesListViewController.swift */; };
 		551A30E120D7FFA9003637A8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A30E020D7FFA9003637A8 /* DetailViewController.swift */; };
 		551A30E420D7FFA9003637A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 551A30E220D7FFA9003637A8 /* Main.storyboard */; };
 		551A30E620D7FFAD003637A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 551A30E520D7FFAD003637A8 /* Assets.xcassets */; };
@@ -28,6 +28,11 @@
 		551A312F20D81428003637A8 /* DateFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A312E20D81428003637A8 /* DateFilter.swift */; };
 		551A313320D81FC4003637A8 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A313220D81FC4003637A8 /* URLSessionMock.swift */; };
 		551A313420D82A8B003637A8 /* testData.json in Resources */ = {isa = PBXBuildFile; fileRef = 551A313020D81ECC003637A8 /* testData.json */; };
+		551A313720D82D25003637A8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A313620D82D24003637A8 /* Coordinator.swift */; };
+		551A313920D82DA6003637A8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A313820D82DA6003637A8 /* AppCoordinator.swift */; };
+		551A313C20D83398003637A8 /* RepositoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A313B20D83398003637A8 /* RepositoriesDataSource.swift */; };
+		551A313E20D8349D003637A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A313D20D8349D003637A8 /* Constants.swift */; };
+		551A314120D83619003637A8 /* RepositoriesListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314020D83619003637A8 /* RepositoriesListCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +83,7 @@
 /* Begin PBXFileReference section */
 		551A30D920D7FFA9003637A8 /* Trending Repos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trending Repos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		551A30DC20D7FFA9003637A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		551A30DE20D7FFA9003637A8 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		551A30DE20D7FFA9003637A8 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
 		551A30E020D7FFA9003637A8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		551A30E320D7FFA9003637A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		551A30E520D7FFAD003637A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,6 +107,11 @@
 		551A312E20D81428003637A8 /* DateFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFilter.swift; sourceTree = "<group>"; };
 		551A313020D81ECC003637A8 /* testData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testData.json; sourceTree = "<group>"; };
 		551A313220D81FC4003637A8 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		551A313620D82D24003637A8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		551A313820D82DA6003637A8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		551A313B20D83398003637A8 /* RepositoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesDataSource.swift; sourceTree = "<group>"; };
+		551A313D20D8349D003637A8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		551A314020D83619003637A8 /* RepositoriesListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,9 +174,9 @@
 			isa = PBXGroup;
 			children = (
 				551A30DC20D7FFA9003637A8 /* AppDelegate.swift */,
-				551A30DE20D7FFA9003637A8 /* MasterViewController.swift */,
-				551A30E020D7FFA9003637A8 /* DetailViewController.swift */,
+				551A313D20D8349D003637A8 /* Constants.swift */,
 				551A312E20D81428003637A8 /* DateFilter.swift */,
+				551A313520D82D0B003637A8 /* Modules */,
 				551A30E220D7FFA9003637A8 /* Main.storyboard */,
 				551A30E520D7FFAD003637A8 /* Assets.xcassets */,
 				551A30E720D7FFAD003637A8 /* LaunchScreen.storyboard */,
@@ -216,6 +226,35 @@
 				551A312C20D80AAB003637A8 /* Page.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		551A313520D82D0B003637A8 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				551A313620D82D24003637A8 /* Coordinator.swift */,
+				551A313820D82DA6003637A8 /* AppCoordinator.swift */,
+				551A313F20D835A9003637A8 /* Detail */,
+				551A313A20D83340003637A8 /* Master List */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		551A313A20D83340003637A8 /* Master List */ = {
+			isa = PBXGroup;
+			children = (
+				551A30DE20D7FFA9003637A8 /* RepositoriesListViewController.swift */,
+				551A314020D83619003637A8 /* RepositoriesListCoordinator.swift */,
+				551A313B20D83398003637A8 /* RepositoriesDataSource.swift */,
+			);
+			path = "Master List";
+			sourceTree = "<group>";
+		};
+		551A313F20D835A9003637A8 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				551A30E020D7FFA9003637A8 /* DetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,10 +433,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551A313C20D83398003637A8 /* RepositoriesDataSource.swift in Sources */,
+				551A313920D82DA6003637A8 /* AppCoordinator.swift in Sources */,
+				551A314120D83619003637A8 /* RepositoriesListCoordinator.swift in Sources */,
 				551A30E120D7FFA9003637A8 /* DetailViewController.swift in Sources */,
-				551A30DF20D7FFA9003637A8 /* MasterViewController.swift in Sources */,
+				551A30DF20D7FFA9003637A8 /* RepositoriesListViewController.swift in Sources */,
+				551A313720D82D25003637A8 /* Coordinator.swift in Sources */,
 				551A30DD20D7FFA9003637A8 /* AppDelegate.swift in Sources */,
 				551A312F20D81428003637A8 /* DateFilter.swift in Sources */,
+				551A313E20D8349D003637A8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
