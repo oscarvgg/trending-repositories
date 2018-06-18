@@ -25,7 +25,7 @@ class RepositoriesDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoriesListViewController
             .ReuseIdentifier
-            .repositoryCell) else {
+            .repositoryCell.rawValue) else {
                 fatalError("Invalid cell")
         }
         

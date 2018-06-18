@@ -10,31 +10,41 @@ import UIKit
 
 class DetailViewController: UITableViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-                label.text = detail.description
-            }
+    @IBOutlet weak var descriptionLabel: UILabel!
+    let emptyViewLabel: UILabel = UILabel()
+    
+    weak var coordinator: DetailCoordinator? {
+        didSet {
+            coordinator?.delegate = self
+            tableViewDataSource.repository = coordinator?.repository
+            coordinator?.start()
         }
     }
+    
+    var tableViewDataSource = DetailTableViewDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        configureView()
+        tableView.dataSource = tableViewDataSource
     }
+}
 
-    var detailItem: NSDate? {
-        didSet {
-            // Update the view.
-            configureView()
+extension DetailViewController: CoordinatorDelegate {
+    
+    func update() {
+        if coordinator?.repository == nil {
+            tableView.backgroundView = emptyViewLabel
+            descriptionLabel?.text = nil
+            emptyViewLabel.text = DetailViewController.noSelectionText
+            emptyViewLabel.textAlignment = .center
+            emptyViewLabel.textColor = .black
+            
+        } else {
+            tableView.backgroundView = nil
+            descriptionLabel?.text = coordinator?.repository?.description ?? "No description"
+            tableViewDataSource.repository = coordinator?.repository
         }
+        tableView.reloadData()
     }
-
-
 }
 

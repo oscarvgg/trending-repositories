@@ -24,16 +24,22 @@ class AppCoordinator: Coordinator {
         splitViewController.delegate = self
         splitViewController.preferredDisplayMode = .allVisible
         
-        guard let masterVC = splitViewController.viewControllers.first as? UINavigationController, let masterListVC = masterVC.viewControllers.first as? RepositoriesListViewController else {
+        guard let masterVC = splitViewController.viewControllers.first as? UINavigationController,
+            let masterListVC = masterVC.viewControllers.first as? RepositoriesListViewController,
+            let detailNavigationVC = splitViewController.viewControllers[1] as? UINavigationController,
+            let detailVC = detailNavigationVC.viewControllers.first as? DetailViewController else {
             fatalError()
         }
         
         let masterCoordinator = RepositoriesListCoordinator(remoteDataStore: RemoteDataStore())
         childCoordinators.append(masterCoordinator)
-        masterCoordinator.delegate = masterListVC
         masterListVC.coordinator = masterCoordinator
         masterCoordinator.delegate?.update()
         masterCoordinator.listDelegate = self
+        
+        let detailCoordinator = DetailCoordinator()
+        childCoordinators.append(detailCoordinator)
+        detailVC.coordinator = detailCoordinator
     }
     
 }
@@ -46,8 +52,8 @@ extension AppCoordinator: UISplitViewControllerDelegate {
         guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
         
         guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
-        
-        if topAsDetailController.detailItem == nil {
+
+        if topAsDetailController.coordinator?.repository == nil {
             // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
             return true
         }
@@ -58,6 +64,29 @@ extension AppCoordinator: UISplitViewControllerDelegate {
 extension AppCoordinator: RepositoriesListCoordinatorDelegate {
     
     func didSelectRepository(_ repository: Repository) {
-        print("selected \(repository.name)")
+        
+        if splitViewController.isCollapsed {
+            guard let masterNavigationVC = splitViewController.viewControllers.first as? UINavigationController,
+                let master = masterNavigationVC.viewControllers.first as? RepositoriesListViewController else {
+                    fatalError()
+            }
+            master.performSegue(withIdentifier: "showDetail", sender: nil)
+            return
+        }
+        
+        
+        guard let detailNavigationVC = splitViewController.viewControllers[1] as? UINavigationController,
+            let detailVC = detailNavigationVC.viewControllers.first as? DetailViewController else {
+                fatalError()
+        }
+        
+        childCoordinators = childCoordinators.filter({ (coordinator) -> Bool in
+            detailVC.coordinator !== coordinator
+        })
+        
+        let detailCoordinator = DetailCoordinator()
+        detailCoordinator.repository = repository
+        childCoordinators.append(detailCoordinator)
+        detailVC.coordinator = detailCoordinator
     }
 }

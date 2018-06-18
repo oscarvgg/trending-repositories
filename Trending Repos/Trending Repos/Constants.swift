@@ -10,7 +10,19 @@ import Foundation
 
 extension RepositoriesListViewController {
     
-    struct ReuseIdentifier {
-        static let repositoryCell = "repositoryCell"
+    enum ReuseIdentifier: String {
+        case repositoryCell
     }
+}
+
+extension DetailViewController {
+    
+    enum ReuseIdentifier: String {
+        case languageCell
+        case forksCell
+        case starsCell
+        case createdOnCell
+    }
+    
+    static let noSelectionText = "Please, select a repository"
 }
