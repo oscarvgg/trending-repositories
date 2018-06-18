@@ -33,6 +33,7 @@
 		551A313C20D83398003637A8 /* RepositoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A313B20D83398003637A8 /* RepositoriesDataSource.swift */; };
 		551A313E20D8349D003637A8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A313D20D8349D003637A8 /* Constants.swift */; };
 		551A314120D83619003637A8 /* RepositoriesListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314020D83619003637A8 /* RepositoriesListCoordinator.swift */; };
+		551A314320D84637003637A8 /* RepositoriesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314220D84637003637A8 /* RepositoriesDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		551A313B20D83398003637A8 /* RepositoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesDataSource.swift; sourceTree = "<group>"; };
 		551A313D20D8349D003637A8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		551A314020D83619003637A8 /* RepositoriesListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListCoordinator.swift; sourceTree = "<group>"; };
+		551A314220D84637003637A8 /* RepositoriesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,8 +235,8 @@
 			children = (
 				551A313620D82D24003637A8 /* Coordinator.swift */,
 				551A313820D82DA6003637A8 /* AppCoordinator.swift */,
-				551A313F20D835A9003637A8 /* Detail */,
 				551A313A20D83340003637A8 /* Master List */,
+				551A313F20D835A9003637A8 /* Detail */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -245,6 +247,7 @@
 				551A30DE20D7FFA9003637A8 /* RepositoriesListViewController.swift */,
 				551A314020D83619003637A8 /* RepositoriesListCoordinator.swift */,
 				551A313B20D83398003637A8 /* RepositoriesDataSource.swift */,
+				551A314220D84637003637A8 /* RepositoriesDelegate.swift */,
 			);
 			path = "Master List";
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				551A313920D82DA6003637A8 /* AppCoordinator.swift in Sources */,
 				551A314120D83619003637A8 /* RepositoriesListCoordinator.swift in Sources */,
 				551A30E120D7FFA9003637A8 /* DetailViewController.swift in Sources */,
+				551A314320D84637003637A8 /* RepositoriesDelegate.swift in Sources */,
 				551A30DF20D7FFA9003637A8 /* RepositoriesListViewController.swift in Sources */,
 				551A313720D82D25003637A8 /* Coordinator.swift in Sources */,
 				551A30DD20D7FFA9003637A8 /* AppDelegate.swift in Sources */,

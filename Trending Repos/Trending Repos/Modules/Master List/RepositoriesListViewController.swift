@@ -10,18 +10,24 @@ import UIKit
 
 class RepositoriesListViewController: UITableViewController {
 
-    var coordinator: RepositoriesListCoordinator?
-    var dataSource: RepositoriesDataSource? = RepositoriesDataSource()
+    weak var coordinator: RepositoriesListCoordinator? {
+        didSet {
+            delegate.coordinator = coordinator
+            coordinator?.start()
+        }
+    }
+    var dataSource = RepositoriesDataSource()
+    var delegate = RepositoriesDelegate()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = dataSource
+        tableView.delegate = delegate
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
-        coordinator?.start()
     }
 
 
@@ -33,7 +39,8 @@ extension RepositoriesListViewController: CoordinatorDelegate {
         guard let coordinator = coordinator else {
             fatalError()
         }
-        dataSource?.repositories = coordinator.repositories
+        dataSource.repositories = coordinator.repositories
+        delegate.repositories = coordinator.repositories
         tableView.reloadData()
     }
     

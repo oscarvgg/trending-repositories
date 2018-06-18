@@ -13,6 +13,7 @@ class RepositoriesListCoordinator: Coordinator {
     
     var childCoordinators: [Coordinator] = []
     weak var delegate: CoordinatorDelegate? = nil
+    weak var listDelegate: RepositoriesListCoordinatorDelegate? = nil
     var remoteDataStore: RemoteDataStore
     var repositories: [Repository] = []
     var currentTerm = "" {
@@ -45,4 +46,12 @@ class RepositoriesListCoordinator: Coordinator {
                 }
         }
     }
+    
+    func selectRepository(_ repository: Repository) {
+        listDelegate?.didSelectRepository(repository)
+    }
+}
+
+protocol RepositoriesListCoordinatorDelegate: class {
+    func didSelectRepository(_ repository: Repository)
 }

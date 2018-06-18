@@ -33,6 +33,7 @@ class AppCoordinator: Coordinator {
         masterCoordinator.delegate = masterListVC
         masterListVC.coordinator = masterCoordinator
         masterCoordinator.delegate?.update()
+        masterCoordinator.listDelegate = self
     }
     
 }
@@ -52,5 +53,11 @@ extension AppCoordinator: UISplitViewControllerDelegate {
         }
         return false
     }
+}
+
+extension AppCoordinator: RepositoriesListCoordinatorDelegate {
     
+    func didSelectRepository(_ repository: Repository) {
+        print("selected \(repository.name)")
+    }
 }
