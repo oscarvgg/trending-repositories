@@ -18,6 +18,7 @@ class DetailViewController: UITableViewController {
             coordinator?.delegate = self
             tableViewDataSource.repository = coordinator?.repository
             coordinator?.start()
+            title = coordinator?.repository?.name
         }
     }
     

@@ -17,17 +17,24 @@ class RepositoriesListCoordinator: Coordinator {
     var remoteDataStore: RemoteDataStore
     fileprivate var allRepositories: [Repository] = []
     var filteredRepositories: [Repository] = []
+    
     var currentTerm = "" {
         didSet {
-            getRepositories(term: currentTerm, filter: currentFilter)
+            getRepositories(term: currentTerm, filter: dateFilter)
         }
     }
+    
     var mode: RepositoriesListMode = .all {
         didSet {
-            applyFilters()
+            applyLocalFilters()
         }
     }
-    var currentFilter: DateFilter = .day
+    
+    var dateFilter: DateFilter = .day {
+        didSet {
+            getRepositories(term: currentTerm, filter: dateFilter)
+        }
+    }
     
     enum RepositoriesListMode {
         case all
@@ -39,7 +46,7 @@ class RepositoriesListCoordinator: Coordinator {
     }
     
     func start() {
-        getRepositories(term: currentTerm, filter: currentFilter)
+        getRepositories(term: currentTerm, filter: dateFilter)
     }
     
     func getRepositories(term: String, filter: DateFilter) {
@@ -50,7 +57,7 @@ class RepositoriesListCoordinator: Coordinator {
                 switch result {
                 case .succeeded(let result):
                     self?.allRepositories = result.items
-                    self?.applyFilters()
+                    self?.applyLocalFilters()
                 case .error(let error):
                     // TODO: display error
                     print(error)
@@ -62,7 +69,7 @@ class RepositoriesListCoordinator: Coordinator {
         listDelegate?.didSelectRepository(repository)
     }
     
-    func applyFilters() {
+    func applyLocalFilters() {
         var repositories = allRepositories
         
         switch mode {

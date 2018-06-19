@@ -13,17 +13,20 @@ class RepositoriesListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     weak var coordinator: RepositoriesListCoordinator? {
         didSet {
             coordinator?.delegate = self
             delegate.coordinator = coordinator
+            searchDelegate = SearchDelegate(coordinator: coordinator!)
+            searchBar.delegate = searchDelegate
             coordinator?.start()
         }
     }
     
     var dataSource = RepositoriesDataSource()
-    
+    var searchDelegate: SearchDelegate?
     var delegate = RepositoriesDelegate()
 
     override func viewDidLoad() {
@@ -45,8 +48,7 @@ class RepositoriesListViewController: UIViewController {
             segmentedControl.selectedSegmentIndex) else {
                 fatalError()
         }
-        coordinator?.currentFilter = dateFilter
-        coordinator?.start()
+        coordinator?.dateFilter = dateFilter
     }
     
     // MARK: - Segues
