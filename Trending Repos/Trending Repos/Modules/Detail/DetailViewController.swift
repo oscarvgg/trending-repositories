@@ -11,6 +11,7 @@ import UIKit
 class DetailViewController: UITableViewController {
     
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var openUrlButton: UIButton!
     let emptyViewLabel: UILabel = UILabel()
     
     weak var coordinator: DetailCoordinator? {
@@ -27,6 +28,8 @@ class DetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = tableViewDataSource
+        openUrlButton.clipsToBounds = true
+        openUrlButton.layer.cornerRadius = 4
     }
     
     @IBAction func openOnGithub(_ sender: UIButton) {
@@ -48,6 +51,7 @@ extension DetailViewController: CoordinatorDelegate {
     func update() {
         if coordinator?.repository == nil {
             tableView.backgroundView = emptyViewLabel
+            openUrlButton.alpha = 0
             descriptionLabel?.text = nil
             emptyViewLabel.text = DetailViewController.noSelectionText
             emptyViewLabel.textAlignment = .center
@@ -55,6 +59,7 @@ extension DetailViewController: CoordinatorDelegate {
             
         } else {
             tableView.backgroundView = nil
+            openUrlButton.alpha = 1
             descriptionLabel?.text = coordinator?.repository?.description ?? "No description"
             tableViewDataSource.repository = coordinator?.repository
         }

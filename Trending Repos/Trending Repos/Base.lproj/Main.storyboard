@@ -342,6 +342,7 @@
                     <navigationItem key="navigationItem" id="kWU-7g-hLa"/>
                     <connections>
                         <outlet property="descriptionLabel" destination="2E2-XD-NJQ" id="axN-hQ-I6R"/>
+                        <outlet property="openUrlButton" destination="045-4Q-TT4" id="Xua-sZ-d4p"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rKT-cg-7dB" userLabel="First Responder" sceneMemberID="firstResponder"/>
