@@ -17,22 +17,38 @@ class RepositoriesListCoordinator: Coordinator {
     var syncDataStore: SyncDataStore
     var remoteFileStore: RemoteFileStore
     var repositories: [Repository] = []
+    var pageSize = 20
+    var hasReachedEnd = false
+    
+    var isLoading: Bool {
+        return syncDataStore.isLoading
+    }
+    
+    var canFetchMorePages: Bool {
+        return !isLoading && !hasReachedEnd
+    }
+    
+    var currentResultPage = 0 {
+        didSet {
+            getRepositories(term: currentTerm, filter: dateFilter)
+        }
+    }
     
     var currentTerm = "" {
         didSet {
-            getRepositories(term: currentTerm, filter: dateFilter)
+            resetResults()
         }
     }
     
     var mode: RepositoriesListMode = .all {
         didSet {
-            getRepositories(term: currentTerm, filter: dateFilter)
+            resetResults()
         }
     }
     
     var dateFilter: DateFilter = .day {
         didSet {
-            getRepositories(term: currentTerm, filter: dateFilter)
+            resetResults()
         }
     }
     
@@ -51,18 +67,17 @@ class RepositoriesListCoordinator: Coordinator {
         getRepositories(term: currentTerm, filter: dateFilter)
     }
     
+    fileprivate func resetResults() {
+        hasReachedEnd = false
+        currentResultPage = 0
+        repositories = []
+        getRepositories(term: currentTerm, filter: dateFilter)
+    }
+    
     func getRepositories(term: String, filter: DateFilter) {
         
         let resultHandler: (RemoteResult<Page<Repository>>) -> () = { [weak self] (result) in
-            
-            switch result {
-            case .succeeded(let result):
-                self?.repositories = result.items
-                self?.delegate?.update()
-            case .error(let error):
-                // TODO: display error
-                print(error)
-            }
+            self?.updateResults(result: result)
         }
         
         switch mode {
@@ -70,16 +85,37 @@ class RepositoriesListCoordinator: Coordinator {
             syncDataStore.getRepositories(
                 withQuery: term,
                 dateFilter: filter,
+                page: currentResultPage,
+                pageSize: pageSize,
                 onComplete: resultHandler)
         case .favorites:
             syncDataStore.localDataStore.getRepositories(
                 withQuery: term,
                 dateFilter: filter,
                 isFavorite: true,
+                page: currentResultPage,
+                pageSize: pageSize,
                 onComplete: resultHandler)
         }
-        
-        
+    }
+    
+    fileprivate func updateResults(result: RemoteResult<Page<Repository>>) {
+        switch result {
+        case .succeeded(let result):
+            
+            if currentResultPage >= (result.totalCount - 1) {
+                hasReachedEnd = true
+            }
+            // avoid duplicates
+            var repoSet = Set(repositories)
+            repoSet = repoSet.union(result.items)
+            // update repo list
+            repositories = repoSet.sorted(by: { $0.starCount > $1.starCount })
+            delegate?.update()
+        case .error(let error):
+            // TODO: display error
+            print(error)
+        }
     }
     
     func getAvatar(url: String, onComplete: @escaping (RemoteResult<Data>) -> ()) {

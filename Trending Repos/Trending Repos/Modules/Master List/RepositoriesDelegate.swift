@@ -28,5 +28,10 @@ class RepositoriesDelegate: NSObject, UITableViewDelegate {
             fatalError()
         }
         cell.updateAvatar()
+        
+        if indexPath.row + 5 >= coordinator.repositories.count && coordinator.canFetchMorePages {
+            // increment page
+            coordinator.currentResultPage += 1
+        }
     }
 }

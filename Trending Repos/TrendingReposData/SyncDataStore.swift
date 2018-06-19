@@ -10,6 +10,9 @@ import Foundation
 
 public final class SyncDataStore {
     
+    public var isLoading: Bool {
+        return remoteStore.isLoading || localDataStore.isLoading
+    }
     public var remoteStore: RemoteDataStore
     public var localDataStore: LocalDataStore
     
@@ -20,16 +23,22 @@ public final class SyncDataStore {
     
     public func getRepositories(withQuery term: String,
                                 dateFilter: DateFilterable,
+                                page: Int = 0,
+                                pageSize: Int = 20,
                                 onComplete: @escaping (RemoteResult<Page<Repository>>) -> ()) {
         // get the local results first
         localDataStore.getRepositories(
             withQuery: term,
-            dateFilter: dateFilter) { [weak self] (localResult) in
+            dateFilter: dateFilter,
+            page: page,
+            pageSize: pageSize) { [weak self] (localResult) in
                 onComplete(localResult)
                 // now get the remote ones
                 self?.remoteStore.getRepositories(
                     withQuery: term,
                     dateFilter: dateFilter,
+                    page: page,
+                    pageSize: pageSize,
                     onComplete: { (remoteResult) in
                         
                         switch remoteResult {
@@ -42,7 +51,9 @@ public final class SyncDataStore {
                                 // get the results for the remote and local combined
                                 self?.localDataStore.getRepositories(
                                     withQuery: term,
-                                    dateFilter: dateFilter) { (localResult) in
+                                    dateFilter: dateFilter,
+                                    page: page,
+                                    pageSize: pageSize) { (localResult) in
                                         onComplete(localResult)
                                 }
                                 

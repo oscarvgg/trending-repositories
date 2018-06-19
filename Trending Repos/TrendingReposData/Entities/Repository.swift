@@ -67,3 +67,17 @@ public final class Repository: Entity {
         return localRepository
     }
 }
+
+extension Repository: Equatable {
+    
+    static public func ==(left: Repository, right: Repository) -> Bool {
+        return left.name == right.name
+    }
+}
+
+extension Repository: Hashable {
+    
+    public var hashValue: Int {
+        return name.hashValue
+    }
+}

@@ -11,6 +11,7 @@ import CoreData
 
 public final class LocalDataStore {
     
+    public var isLoading = false
     private var coreDataManager = CoreDataManager(modelName: "TrendingRepos")
     
     public init() {}
@@ -18,7 +19,10 @@ public final class LocalDataStore {
     public func getRepositories(withQuery term: String,
                                 dateFilter: DateFilterable,
                                 isFavorite: Bool = false,
+                                page: Int = 0,
+                                pageSize: Int = 20,
                                 onComplete: @escaping (RemoteResult<Page<Repository>>) -> ()) {
+        isLoading = true
         let fetchRequest: NSFetchRequest<LocalRepository> = LocalRepository.fetchRequest()
         
         // create the predicates
@@ -48,8 +52,24 @@ public final class LocalDataStore {
             NSSortDescriptor(key: #keyPath(LocalRepository.starCount), ascending: false)
         ]
         
-        coreDataManager.managedObjectContext.perform {
-            do {
+        // request the total page count
+        var totalCount = 0
+            
+        do {
+            let resultCount = try coreDataManager.managedObjectContext.count(for: fetchRequest)
+            totalCount = Int(ceilf(Float(resultCount) / Float(pageSize)))
+        }
+        catch let error {
+            print(error)
+        }
+        
+        // limits
+        fetchRequest.fetchLimit = pageSize
+        fetchRequest.fetchOffset = pageSize * page
+        
+        coreDataManager.managedObjectContext.perform { [weak self] in
+             do {
+                self?.isLoading = false
                 let localRepositories = try fetchRequest.execute()
                 
                 let repositories = localRepositories.map({ (localRepo) -> Repository in
@@ -57,6 +77,7 @@ public final class LocalDataStore {
                 })
                 
                 let page = Page<Repository>()
+                page.totalCount = totalCount
                 page.items = repositories
                 
                 DispatchQueue.main.async {

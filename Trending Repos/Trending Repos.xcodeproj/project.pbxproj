@@ -228,8 +228,8 @@
 			children = (
 				551A310520D80353003637A8 /* TrendingReposData.h */,
 				551A312320D80612003637A8 /* Formater+ISO8601.swift */,
-				551A312120D80386003637A8 /* RemoteDataStore.swift */,
 				5529296F20D90EBC00996FFD /* RemoteFileStore.swift */,
+				551A312120D80386003637A8 /* RemoteDataStore.swift */,
 				554BB32920D9304F00038EF4 /* LocalDataStore.swift */,
 				556B5C1C20D949E100902F19 /* SyncDataStore.swift */,
 				551A316820D8789A003637A8 /* CoreData */,
