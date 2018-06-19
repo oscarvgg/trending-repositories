@@ -25,12 +25,12 @@ class RepositoriesDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RepositoriesListViewController
             .ReuseIdentifier
-            .repositoryCell.rawValue) else {
+            .repositoryCell.rawValue) as? RepositoryTableViewCell else {
                 fatalError("Invalid cell")
         }
         
         let repository = repositories[indexPath.row]
-        cell.textLabel?.text = repository.name
+        cell.present(repository: repository)
         
         return cell
     }

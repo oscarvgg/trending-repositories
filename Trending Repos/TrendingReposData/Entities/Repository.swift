@@ -16,6 +16,7 @@ public final class Repository: Entity {
     public var starCount: Int = 0
     public var language: String?
     public var forkCount: Int = 0
+    public var url: String?
     public var createdAt: Date = Date()
     public var isFavorite = false
     
@@ -27,6 +28,7 @@ public final class Repository: Entity {
         case starCount = "stargazers_count"
         case language
         case forkCount = "forks_count"
+        case url = "html_url"
         case createdAt = "created_at"
     }
     
