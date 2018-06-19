@@ -37,7 +37,8 @@
 		551A314520D84CF0003637A8 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314420D84CF0003637A8 /* DetailCoordinator.swift */; };
 		551A314720D84D62003637A8 /* DetailTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314620D84D62003637A8 /* DetailTableViewDataSource.swift */; };
 		551A317520D888E0003637A8 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317420D888E0003637A8 /* FileStorage.swift */; };
-		551A317720D88B65003637A8 /* MasterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317620D88B65003637A8 /* MasterTabBarController.swift */; };
+		551A317920D8EFD6003637A8 /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317820D8EFD6003637A8 /* RepositoryTableViewCell.swift */; };
+		551A317B20D8F197003637A8 /* RepositoryPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317A20D8F197003637A8 /* RepositoryPresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,7 +122,8 @@
 		551A314420D84CF0003637A8 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		551A314620D84D62003637A8 /* DetailTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewDataSource.swift; sourceTree = "<group>"; };
 		551A317420D888E0003637A8 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
-		551A317620D88B65003637A8 /* MasterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTabBarController.swift; sourceTree = "<group>"; };
+		551A317820D8EFD6003637A8 /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
+		551A317A20D8F197003637A8 /* RepositoryPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryPresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,7 +246,7 @@
 			children = (
 				551A313620D82D24003637A8 /* Coordinator.swift */,
 				551A313820D82DA6003637A8 /* AppCoordinator.swift */,
-				551A317620D88B65003637A8 /* MasterTabBarController.swift */,
+				551A317A20D8F197003637A8 /* RepositoryPresentable.swift */,
 				551A313A20D83340003637A8 /* Master List */,
 				551A313F20D835A9003637A8 /* Detail */,
 			);
@@ -258,6 +260,7 @@
 				551A314020D83619003637A8 /* RepositoriesListCoordinator.swift */,
 				551A313B20D83398003637A8 /* RepositoriesDataSource.swift */,
 				551A314220D84637003637A8 /* RepositoriesDelegate.swift */,
+				551A317820D8EFD6003637A8 /* RepositoryTableViewCell.swift */,
 			);
 			path = "Master List";
 			sourceTree = "<group>";
@@ -463,12 +466,13 @@
 				551A30E120D7FFA9003637A8 /* DetailViewController.swift in Sources */,
 				551A314320D84637003637A8 /* RepositoriesDelegate.swift in Sources */,
 				551A30DF20D7FFA9003637A8 /* RepositoriesListViewController.swift in Sources */,
-				551A317720D88B65003637A8 /* MasterTabBarController.swift in Sources */,
 				551A313720D82D25003637A8 /* Coordinator.swift in Sources */,
+				551A317920D8EFD6003637A8 /* RepositoryTableViewCell.swift in Sources */,
 				551A314720D84D62003637A8 /* DetailTableViewDataSource.swift in Sources */,
 				551A30DD20D7FFA9003637A8 /* AppDelegate.swift in Sources */,
 				551A312F20D81428003637A8 /* DateFilter.swift in Sources */,
 				551A313E20D8349D003637A8 /* Constants.swift in Sources */,
+				551A317B20D8F197003637A8 /* RepositoryPresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

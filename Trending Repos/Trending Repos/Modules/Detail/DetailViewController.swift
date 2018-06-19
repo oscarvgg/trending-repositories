@@ -9,7 +9,7 @@
 import UIKit
 
 class DetailViewController: UITableViewController {
-
+    
     @IBOutlet weak var descriptionLabel: UILabel!
     let emptyViewLabel: UILabel = UILabel()
     
@@ -22,11 +22,24 @@ class DetailViewController: UITableViewController {
     }
     
     var tableViewDataSource = DetailTableViewDataSource()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = tableViewDataSource
     }
+    
+    @IBAction func openOnGithub(_ sender: UIButton) {
+        guard let urlString = coordinator?.repository?.url,
+            let url = URL(string: urlString) else {
+            return
+        }
+        UIApplication.shared.open(
+            url,
+            options: [:]) { (suceeded) in
+                
+        }
+    }
+    
 }
 
 extension DetailViewController: CoordinatorDelegate {
