@@ -38,6 +38,7 @@
 		551A314720D84D62003637A8 /* DetailTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314620D84D62003637A8 /* DetailTableViewDataSource.swift */; };
 		551A317920D8EFD6003637A8 /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317820D8EFD6003637A8 /* RepositoryTableViewCell.swift */; };
 		551A317B20D8F197003637A8 /* RepositoryPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317A20D8F197003637A8 /* RepositoryPresentable.swift */; };
+		5522B0EF20D99C9C00F77DFD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5522B0EE20D99C9C00F77DFD /* README.md */; };
 		5529296C20D9042C00996FFD /* SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529296B20D9042C00996FFD /* SearchDelegate.swift */; };
 		5529296E20D905B800996FFD /* Delayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529296D20D905B800996FFD /* Delayable.swift */; };
 		5529297020D90EBC00996FFD /* RemoteFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529296F20D90EBC00996FFD /* RemoteFileStore.swift */; };
@@ -131,6 +132,7 @@
 		551A314620D84D62003637A8 /* DetailTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewDataSource.swift; sourceTree = "<group>"; };
 		551A317820D8EFD6003637A8 /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		551A317A20D8F197003637A8 /* RepositoryPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryPresentable.swift; sourceTree = "<group>"; };
+		5522B0EE20D99C9C00F77DFD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		5529296B20D9042C00996FFD /* SearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDelegate.swift; sourceTree = "<group>"; };
 		5529296D20D905B800996FFD /* Delayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delayable.swift; sourceTree = "<group>"; };
 		5529296F20D90EBC00996FFD /* RemoteFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFileStore.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		551A30D020D7FFA9003637A8 = {
 			isa = PBXGroup;
 			children = (
+				5522B0EE20D99C9C00F77DFD /* README.md */,
 				551A30DB20D7FFA9003637A8 /* Trending Repos */,
 				551A30F220D7FFAD003637A8 /* Trending ReposTests */,
 				551A310420D80352003637A8 /* TrendingReposData */,
@@ -450,6 +453,7 @@
 			files = (
 				551A30E920D7FFAD003637A8 /* LaunchScreen.storyboard in Resources */,
 				551A30E620D7FFAD003637A8 /* Assets.xcassets in Resources */,
+				5522B0EF20D99C9C00F77DFD /* README.md in Resources */,
 				551A30E420D7FFA9003637A8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
