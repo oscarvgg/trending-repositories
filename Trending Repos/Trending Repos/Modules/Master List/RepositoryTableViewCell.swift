@@ -17,7 +17,14 @@ class RepositoryTableViewCell: UITableViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var starCountLabel: UILabel!
     
+    var coordinator: RepositoriesListCoordinator?
     var repository: Repository?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        ownerAvatarImageView.layer.cornerRadius = ownerAvatarImageView.bounds.width / 2
+        ownerAvatarImageView.clipsToBounds = true
+    }
     
     func updateUI() {
         
@@ -28,11 +35,34 @@ class RepositoryTableViewCell: UITableViewCell {
             starCountLabel.text = String(repository.starCount)
             return
         }
-        
+        ownerAvatarImageView.image = nil
         nameLabel.text = nil
         descriptionLabel.text = nil
         favoriteButton.isSelected = false
         starCountLabel.text = nil
+    }
+    
+    func updateAvatar() {
+        ownerAvatarImageView.image = nil
+        
+        guard let avatarURl = repository?.owner.avatarUrl else {
+            return
+        }
+        coordinator?.getAvatar(
+            url: avatarURl,
+            onComplete: { [weak self] (result) in
+                
+                switch result {
+                case .succeeded(let data):
+                    guard let image = UIImage(data: data) else {
+                        return
+                    }
+                    self?.ownerAvatarImageView.image = image
+                case .error(_):
+                    // TODO: apply default image
+                    self?.ownerAvatarImageView.image = nil
+                }
+        })
     }
     
     @IBAction func favorite(_ sender: UIButton) {

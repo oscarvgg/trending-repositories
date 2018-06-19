@@ -12,16 +12,21 @@ import TrendingReposData
 
 class RepositoriesDelegate: NSObject, UITableViewDelegate {
     
-    var repositories: [Repository] = []
-    weak var coordinator: RepositoriesListCoordinator?
+    var coordinator: RepositoriesListCoordinator
+    
+    init(coordinator: RepositoriesListCoordinator) {
+        self.coordinator = coordinator
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repository = repositories[indexPath.row]
-        
-        guard let coordinator = coordinator else {
+        let repository = coordinator.filteredRepositories[indexPath.row]
+        coordinator.select(repository: repository)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? RepositoryTableViewCell else {
             fatalError()
         }
-        
-        coordinator.select(repository: repository)
+        cell.updateAvatar()
     }
 }

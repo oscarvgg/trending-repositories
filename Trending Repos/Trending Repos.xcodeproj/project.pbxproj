@@ -36,11 +36,12 @@
 		551A314320D84637003637A8 /* RepositoriesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314220D84637003637A8 /* RepositoriesDelegate.swift */; };
 		551A314520D84CF0003637A8 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314420D84CF0003637A8 /* DetailCoordinator.swift */; };
 		551A314720D84D62003637A8 /* DetailTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314620D84D62003637A8 /* DetailTableViewDataSource.swift */; };
-		551A317520D888E0003637A8 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317420D888E0003637A8 /* FileStorage.swift */; };
 		551A317920D8EFD6003637A8 /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317820D8EFD6003637A8 /* RepositoryTableViewCell.swift */; };
 		551A317B20D8F197003637A8 /* RepositoryPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317A20D8F197003637A8 /* RepositoryPresentable.swift */; };
 		5529296C20D9042C00996FFD /* SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529296B20D9042C00996FFD /* SearchDelegate.swift */; };
 		5529296E20D905B800996FFD /* Delayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529296D20D905B800996FFD /* Delayable.swift */; };
+		5529297020D90EBC00996FFD /* RemoteFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529296F20D90EBC00996FFD /* RemoteFileStore.swift */; };
+		5529297220D9140000996FFD /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529297120D9140000996FFD /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,11 +124,12 @@
 		551A314220D84637003637A8 /* RepositoriesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesDelegate.swift; sourceTree = "<group>"; };
 		551A314420D84CF0003637A8 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		551A314620D84D62003637A8 /* DetailTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewDataSource.swift; sourceTree = "<group>"; };
-		551A317420D888E0003637A8 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		551A317820D8EFD6003637A8 /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		551A317A20D8F197003637A8 /* RepositoryPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryPresentable.swift; sourceTree = "<group>"; };
 		5529296B20D9042C00996FFD /* SearchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDelegate.swift; sourceTree = "<group>"; };
 		5529296D20D905B800996FFD /* Delayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delayable.swift; sourceTree = "<group>"; };
+		5529296F20D90EBC00996FFD /* RemoteFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFileStore.swift; sourceTree = "<group>"; };
+		5529297120D9140000996FFD /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			children = (
 				551A30DC20D7FFA9003637A8 /* AppDelegate.swift */,
 				551A313D20D8349D003637A8 /* Constants.swift */,
+				5529297120D9140000996FFD /* Errors.swift */,
 				551A312E20D81428003637A8 /* DateFilter.swift */,
 				551A313520D82D0B003637A8 /* Modules */,
 				551A30E220D7FFA9003637A8 /* Main.storyboard */,
@@ -216,6 +219,7 @@
 				551A310520D80353003637A8 /* TrendingReposData.h */,
 				551A312320D80612003637A8 /* Formater+ISO8601.swift */,
 				551A312120D80386003637A8 /* RemoteDataStore.swift */,
+				5529296F20D90EBC00996FFD /* RemoteFileStore.swift */,
 				551A316820D8789A003637A8 /* Local Data Store */,
 				551A312B20D8095B003637A8 /* Entities */,
 				551A310620D80353003637A8 /* Info.plist */,
@@ -284,7 +288,6 @@
 		551A316820D8789A003637A8 /* Local Data Store */ = {
 			isa = PBXGroup;
 			children = (
-				551A317420D888E0003637A8 /* FileStorage.swift */,
 			);
 			path = "Local Data Store";
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				551A314720D84D62003637A8 /* DetailTableViewDataSource.swift in Sources */,
 				551A30DD20D7FFA9003637A8 /* AppDelegate.swift in Sources */,
 				551A312F20D81428003637A8 /* DateFilter.swift in Sources */,
+				5529297220D9140000996FFD /* Errors.swift in Sources */,
 				5529296E20D905B800996FFD /* Delayable.swift in Sources */,
 				551A313E20D8349D003637A8 /* Constants.swift in Sources */,
 				551A317B20D8F197003637A8 /* RepositoryPresentable.swift in Sources */,
@@ -497,11 +501,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				551A312820D80943003637A8 /* User.swift in Sources */,
+				5529297020D90EBC00996FFD /* RemoteFileStore.swift in Sources */,
 				551A312420D80612003637A8 /* Formater+ISO8601.swift in Sources */,
 				551A312D20D80AAB003637A8 /* Page.swift in Sources */,
 				551A312A20D80953003637A8 /* Repository.swift in Sources */,
 				551A312220D80386003637A8 /* RemoteDataStore.swift in Sources */,
-				551A317520D888E0003637A8 /* FileStorage.swift in Sources */,
 				551A312620D80936003637A8 /* Entity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

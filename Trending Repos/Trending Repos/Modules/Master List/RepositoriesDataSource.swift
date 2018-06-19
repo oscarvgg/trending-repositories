@@ -12,14 +12,18 @@ import TrendingReposData
 
 class RepositoriesDataSource: NSObject, UITableViewDataSource {
     
-    var repositories: [Repository] = []
+    var coordinator: RepositoriesListCoordinator
+    
+    init(coordinator: RepositoriesListCoordinator) {
+        self.coordinator = coordinator
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositories.count
+        return coordinator.filteredRepositories.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -29,7 +33,8 @@ class RepositoriesDataSource: NSObject, UITableViewDataSource {
                 fatalError("Invalid cell")
         }
         
-        let repository = repositories[indexPath.row]
+        let repository = coordinator.filteredRepositories[indexPath.row]
+        cell.coordinator = coordinator
         cell.present(repository: repository)
         
         return cell

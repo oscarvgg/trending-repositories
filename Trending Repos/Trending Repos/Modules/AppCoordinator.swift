@@ -16,8 +16,13 @@ class AppCoordinator: Coordinator {
     weak var delegate: CoordinatorDelegate?
     var childCoordinators: [Coordinator] = []
     
+    var remoteDataStore: RemoteDataStore
+    var remoteFileStore: RemoteFileStore
+    
     init(splitViewController: UISplitViewController) {
         self.splitViewController = splitViewController
+        remoteDataStore = RemoteDataStore()
+        remoteFileStore = RemoteFileStore()
     }
     
     func start() {
@@ -31,7 +36,9 @@ class AppCoordinator: Coordinator {
             fatalError()
         }
         
-        let masterCoordinator = RepositoriesListCoordinator(remoteDataStore: RemoteDataStore())
+        let masterCoordinator = RepositoriesListCoordinator(
+            remoteDataStore: remoteDataStore,
+            remoteFileStore: remoteFileStore)
         childCoordinators.append(masterCoordinator)
         masterListVC.coordinator = masterCoordinator
         masterCoordinator.delegate?.update()

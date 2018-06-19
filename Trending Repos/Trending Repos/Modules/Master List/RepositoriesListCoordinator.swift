@@ -15,6 +15,7 @@ class RepositoriesListCoordinator: Coordinator {
     weak var delegate: CoordinatorDelegate? = nil
     weak var listDelegate: RepositoriesListCoordinatorDelegate? = nil
     var remoteDataStore: RemoteDataStore
+    var remoteFileStore: RemoteFileStore
     fileprivate var allRepositories: [Repository] = []
     var filteredRepositories: [Repository] = []
     
@@ -41,8 +42,9 @@ class RepositoriesListCoordinator: Coordinator {
         case favorites
     }
     
-    init(remoteDataStore: RemoteDataStore) {
+    init(remoteDataStore: RemoteDataStore, remoteFileStore: RemoteFileStore) {
         self.remoteDataStore = remoteDataStore
+        self.remoteFileStore = remoteFileStore
     }
     
     func start() {
@@ -62,6 +64,16 @@ class RepositoriesListCoordinator: Coordinator {
                     // TODO: display error
                     print(error)
                 }
+        }
+    }
+    
+    func getAvatar(url: String, onComplete: @escaping (RemoteResult<Data>) -> ()) {
+        guard let url = URL(string: url) else {
+            return onComplete(.error(AppError.invalidUrl))
+        }
+        
+        remoteFileStore.get(url: url) { (result) in
+            onComplete(result)
         }
     }
     

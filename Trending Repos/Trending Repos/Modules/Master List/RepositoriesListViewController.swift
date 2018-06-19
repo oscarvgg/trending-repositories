@@ -17,24 +17,30 @@ class RepositoriesListViewController: UIViewController {
     
     weak var coordinator: RepositoriesListCoordinator? {
         didSet {
-            coordinator?.delegate = self
-            delegate.coordinator = coordinator
-            searchDelegate = SearchDelegate(coordinator: coordinator!)
+            guard let coordinator = coordinator else {
+                return
+            }
+            dataSource = RepositoriesDataSource(coordinator: coordinator)
+            delegate = RepositoriesDelegate(coordinator: coordinator)
+            tableView.dataSource = dataSource
+            tableView.delegate = delegate
+            
+            searchDelegate = SearchDelegate(coordinator: coordinator)
             searchBar.delegate = searchDelegate
-            coordinator?.start()
+            
+            coordinator.delegate = self
+            coordinator.start()
         }
     }
     
-    var dataSource = RepositoriesDataSource()
+    var dataSource: RepositoriesDataSource?
     var searchDelegate: SearchDelegate?
-    var delegate = RepositoriesDelegate()
+    var delegate: RepositoriesDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items?[0]
-        tableView.dataSource = dataSource
-        tableView.delegate = delegate
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -80,11 +86,6 @@ class RepositoriesListViewController: UIViewController {
 extension RepositoriesListViewController: CoordinatorDelegate {
     
     func update() {
-        guard let coordinator = coordinator else {
-            fatalError()
-        }
-        dataSource.repositories = coordinator.filteredRepositories
-        delegate.repositories = coordinator.filteredRepositories
         tableView.reloadData()
     }
     
