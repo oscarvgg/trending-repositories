@@ -37,8 +37,8 @@ class RemoteDataStoreTests: XCTestCase {
                     let repo = result.items[0]
                     XCTAssertEqual(repo.identifier, 3081286)
                     XCTAssertEqual(repo.name, "Tetris")
-                    XCTAssertEqual(repo.shortDescription, "A C implementation of Tetris using Pennsim through LC4")
-                    XCTAssertEqual(repo.starsCount, 1)
+                    XCTAssertEqual(repo.description, "A C implementation of Tetris using Pennsim through LC4")
+                    XCTAssertEqual(repo.starCount, 1)
                     XCTAssertEqual(repo.language, "Assembly")
                     XCTAssertEqual(repo.forkCount, 0)
                     XCTAssertEqual(repo.createdAt,
