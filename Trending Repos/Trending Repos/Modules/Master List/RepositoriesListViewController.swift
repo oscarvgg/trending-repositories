@@ -8,8 +8,12 @@
 
 import UIKit
 
-class RepositoriesListViewController: UITableViewController {
+class RepositoriesListViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var tabBar: UITabBar!
+    
     weak var coordinator: RepositoriesListCoordinator? {
         didSet {
             coordinator?.delegate = self
@@ -17,18 +21,21 @@ class RepositoriesListViewController: UITableViewController {
             coordinator?.start()
         }
     }
+    
     var dataSource = RepositoriesDataSource()
+    
     var delegate = RepositoriesDelegate()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.delegate = self
+        tabBar.selectedItem = tabBar.items?[0]
         tableView.dataSource = dataSource
         tableView.delegate = delegate
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
     }
     
     // MARK: - Segues
@@ -43,7 +50,7 @@ class RepositoriesListViewController: UITableViewController {
         let detailVC = (segue.destination as! UINavigationController).topViewController as! DetailViewController
         
         let appCoordinator = appDelegate.appCoordinator!
-        let repository = coordinator?.repositories[indexPath.row]
+        let repository = coordinator?.filteredRepositories[indexPath.row]
         
         appCoordinator.childCoordinators = appCoordinator.childCoordinators.filter({ (coordinator) -> Bool in
             detailVC.coordinator !== coordinator
@@ -63,10 +70,27 @@ extension RepositoriesListViewController: CoordinatorDelegate {
         guard let coordinator = coordinator else {
             fatalError()
         }
-        dataSource.repositories = coordinator.repositories
-        delegate.repositories = coordinator.repositories
+        dataSource.repositories = coordinator.filteredRepositories
+        delegate.repositories = coordinator.filteredRepositories
         tableView.reloadData()
     }
     
+}
+
+extension RepositoriesListViewController: UITabBarDelegate {
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        guard let index = tabBar.items?.firstIndex(where: { $0 === item }) else {
+            fatalError()
+        }
+        switch index {
+        case 0:
+            coordinator?.mode = .all
+        case 1:
+            coordinator?.mode = .favorites
+        default:
+            fatalError()
+        }
+    }
 }
 

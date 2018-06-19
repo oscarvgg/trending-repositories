@@ -36,6 +36,8 @@
 		551A314320D84637003637A8 /* RepositoriesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314220D84637003637A8 /* RepositoriesDelegate.swift */; };
 		551A314520D84CF0003637A8 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314420D84CF0003637A8 /* DetailCoordinator.swift */; };
 		551A314720D84D62003637A8 /* DetailTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A314620D84D62003637A8 /* DetailTableViewDataSource.swift */; };
+		551A317520D888E0003637A8 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317420D888E0003637A8 /* FileStorage.swift */; };
+		551A317720D88B65003637A8 /* MasterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551A317620D88B65003637A8 /* MasterTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,8 @@
 		551A314220D84637003637A8 /* RepositoriesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesDelegate.swift; sourceTree = "<group>"; };
 		551A314420D84CF0003637A8 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		551A314620D84D62003637A8 /* DetailTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewDataSource.swift; sourceTree = "<group>"; };
+		551A317420D888E0003637A8 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		551A317620D88B65003637A8 /* MasterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +210,7 @@
 				551A310520D80353003637A8 /* TrendingReposData.h */,
 				551A312320D80612003637A8 /* Formater+ISO8601.swift */,
 				551A312120D80386003637A8 /* RemoteDataStore.swift */,
+				551A316820D8789A003637A8 /* Local Data Store */,
 				551A312B20D8095B003637A8 /* Entities */,
 				551A310620D80353003637A8 /* Info.plist */,
 			);
@@ -239,6 +244,7 @@
 			children = (
 				551A313620D82D24003637A8 /* Coordinator.swift */,
 				551A313820D82DA6003637A8 /* AppCoordinator.swift */,
+				551A317620D88B65003637A8 /* MasterTabBarController.swift */,
 				551A313A20D83340003637A8 /* Master List */,
 				551A313F20D835A9003637A8 /* Detail */,
 			);
@@ -264,6 +270,14 @@
 				551A314620D84D62003637A8 /* DetailTableViewDataSource.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		551A316820D8789A003637A8 /* Local Data Store */ = {
+			isa = PBXGroup;
+			children = (
+				551A317420D888E0003637A8 /* FileStorage.swift */,
+			);
+			path = "Local Data Store";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +463,7 @@
 				551A30E120D7FFA9003637A8 /* DetailViewController.swift in Sources */,
 				551A314320D84637003637A8 /* RepositoriesDelegate.swift in Sources */,
 				551A30DF20D7FFA9003637A8 /* RepositoriesListViewController.swift in Sources */,
+				551A317720D88B65003637A8 /* MasterTabBarController.swift in Sources */,
 				551A313720D82D25003637A8 /* Coordinator.swift in Sources */,
 				551A314720D84D62003637A8 /* DetailTableViewDataSource.swift in Sources */,
 				551A30DD20D7FFA9003637A8 /* AppDelegate.swift in Sources */,
@@ -474,6 +489,7 @@
 				551A312D20D80AAB003637A8 /* Page.swift in Sources */,
 				551A312A20D80953003637A8 /* Repository.swift in Sources */,
 				551A312220D80386003637A8 /* RemoteDataStore.swift in Sources */,
+				551A317520D888E0003637A8 /* FileStorage.swift in Sources */,
 				551A312620D80936003637A8 /* Entity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

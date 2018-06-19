@@ -75,7 +75,7 @@ class DetailTableViewDataSource: NSObject, UITableViewDataSource {
                 .rawValue) else {
                     fatalError("Invalid cell")
             }
-            cell.textLabel?.text = String(describing: repository?.stars)
+            cell.textLabel?.text = String(describing: repository?.starCount)
             
             return cell
         case .creationDate:

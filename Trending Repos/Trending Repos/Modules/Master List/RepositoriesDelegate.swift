@@ -22,6 +22,6 @@ class RepositoriesDelegate: NSObject, UITableViewDelegate {
             fatalError()
         }
         
-        coordinator.selectRepository(repository)
+        coordinator.select(repository: repository)
     }
 }

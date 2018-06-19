@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct User: Entity {
+public final class User: Entity {
     
     public var identifier: Int?
     public var username: String

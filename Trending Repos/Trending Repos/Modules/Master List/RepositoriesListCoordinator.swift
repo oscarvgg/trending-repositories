@@ -15,13 +15,24 @@ class RepositoriesListCoordinator: Coordinator {
     weak var delegate: CoordinatorDelegate? = nil
     weak var listDelegate: RepositoriesListCoordinatorDelegate? = nil
     var remoteDataStore: RemoteDataStore
-    var repositories: [Repository] = []
+    fileprivate var allRepositories: [Repository] = []
+    var filteredRepositories: [Repository] = []
     var currentTerm = "" {
         didSet {
             getRepositories(term: currentTerm, filter: currentFilter)
         }
     }
+    var mode: RepositoriesListMode = .all {
+        didSet {
+            applyFilters()
+        }
+    }
     var currentFilter: DateFilter = .day
+    
+    enum RepositoriesListMode {
+        case all
+        case favorites
+    }
     
     init(remoteDataStore: RemoteDataStore) {
         self.remoteDataStore = remoteDataStore
@@ -38,8 +49,8 @@ class RepositoriesListCoordinator: Coordinator {
                 
                 switch result {
                 case .succeeded(let result):
-                    self?.repositories = result.items
-                    self?.delegate?.update()
+                    self?.allRepositories = result.items
+                    self?.applyFilters()
                 case .error(let error):
                     // TODO: display error
                     print(error)
@@ -47,8 +58,23 @@ class RepositoriesListCoordinator: Coordinator {
         }
     }
     
-    func selectRepository(_ repository: Repository) {
+    func select(repository: Repository) {
         listDelegate?.didSelectRepository(repository)
+    }
+    
+    func applyFilters() {
+        var repositories = allRepositories
+        
+        switch mode {
+        case .all:
+            filteredRepositories = repositories
+        case .favorites:
+            filteredRepositories = repositories.filter({ (repo) -> Bool in
+                repo.isFavorite == true
+            })
+        }
+        
+        delegate?.update()
     }
 }
 
