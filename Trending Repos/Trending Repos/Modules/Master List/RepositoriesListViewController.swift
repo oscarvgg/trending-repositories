@@ -11,7 +11,7 @@ import UIKit
 class RepositoriesListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tabBar: UITabBar!
     
     weak var coordinator: RepositoriesListCoordinator? {
@@ -36,6 +36,17 @@ class RepositoriesListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func changeDateFilter(_ sender: Any) {
+        guard let dateFilter = DateFilter(rawValue:
+            segmentedControl.selectedSegmentIndex) else {
+                fatalError()
+        }
+        coordinator?.currentFilter = dateFilter
+        coordinator?.start()
     }
     
     // MARK: - Segues

@@ -9,7 +9,7 @@
 import Foundation
 import TrendingReposData
 
-public enum DateFilter: DateFilterable {
+public enum DateFilter: Int, DateFilterable {
     case day
     case week
     case month
