@@ -18,10 +18,14 @@ class RepositoriesListCoordinator: Coordinator {
     var remoteFileStore: RemoteFileStore
     var repositories: [Repository] = []
     var pageSize = 20
-    var hasReachedEnd = false
+    var currentPageCount = 0
     
     var isLoading: Bool {
         return syncDataStore.isLoading
+    }
+    
+    var hasReachedEnd: Bool {
+        return currentResultPage >= (currentPageCount - 1)
     }
     
     var canFetchMorePages: Bool {
@@ -68,7 +72,7 @@ class RepositoriesListCoordinator: Coordinator {
     }
     
     fileprivate func resetResults() {
-        hasReachedEnd = false
+        currentPageCount = 0
         currentResultPage = 0
         repositories = []
         getRepositories(term: currentTerm, filter: dateFilter)
@@ -79,6 +83,7 @@ class RepositoriesListCoordinator: Coordinator {
         let resultHandler: (RemoteResult<Page<Repository>>) -> () = { [weak self] (result) in
             self?.updateResults(result: result)
         }
+        currentPageCount = 0
         
         switch mode {
         case .all:
@@ -103,9 +108,7 @@ class RepositoriesListCoordinator: Coordinator {
         switch result {
         case .succeeded(let result):
             
-            if currentResultPage >= (result.totalCount - 1) {
-                hasReachedEnd = true
-            }
+            currentPageCount = max(currentPageCount, result.totalCount)
             // avoid duplicates
             var repoSet = Set(repositories)
             repoSet = repoSet.union(result.items)

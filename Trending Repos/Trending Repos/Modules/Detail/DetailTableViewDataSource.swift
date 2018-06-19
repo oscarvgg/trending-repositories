@@ -42,7 +42,7 @@ class DetailTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let realRowIndex = indexPath.row + (repository?.language != nil ? 0 : 1)
         
-        guard let rowType = Rows(rawValue: realRowIndex) else {
+        guard let rowType = Rows(rawValue: realRowIndex), let repository = repository else {
             fatalError("Invalid row")
         }
         
@@ -54,7 +54,7 @@ class DetailTableViewDataSource: NSObject, UITableViewDataSource {
                 .rawValue) else {
                 fatalError("Invalid cell")
             }
-            cell.textLabel?.text = String(describing: repository?.language)
+            cell.textLabel?.text = repository.language
             
             return cell
         case .numberOfForks:
@@ -64,7 +64,7 @@ class DetailTableViewDataSource: NSObject, UITableViewDataSource {
                 .rawValue) else {
                     fatalError("Invalid cell")
             }
-            cell.textLabel?.text = String(describing: repository?.forkCount)
+            cell.textLabel?.text = "\(repository.forkCount) forks"
             
             return cell
             
@@ -75,7 +75,7 @@ class DetailTableViewDataSource: NSObject, UITableViewDataSource {
                 .rawValue) else {
                     fatalError("Invalid cell")
             }
-            cell.textLabel?.text = String(describing: repository?.starCount)
+            cell.textLabel?.text = "\(repository.starCount) stars"
             
             return cell
         case .creationDate:
@@ -85,7 +85,11 @@ class DetailTableViewDataSource: NSObject, UITableViewDataSource {
                 .rawValue) else {
                     fatalError("Invalid cell")
             }
-            cell.textLabel?.text = String(describing: repository?.createdAt)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            let formatedDate = dateFormatter.string(from: repository.createdAt)
+            cell.textLabel?.text = "Created on \(formatedDate)"
             
             return cell
         }

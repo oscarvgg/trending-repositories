@@ -21,6 +21,7 @@ public final class LocalDataStore {
                                 isFavorite: Bool = false,
                                 page: Int = 0,
                                 pageSize: Int = 20,
+                                lastRemotePageCount: Int? = nil,
                                 onComplete: @escaping (RemoteResult<Page<Repository>>) -> ()) {
         isLoading = true
         let fetchRequest: NSFetchRequest<LocalRepository> = LocalRepository.fetchRequest()
@@ -58,6 +59,10 @@ public final class LocalDataStore {
         do {
             let resultCount = try coreDataManager.managedObjectContext.count(for: fetchRequest)
             totalCount = Int(ceilf(Float(resultCount) / Float(pageSize)))
+            
+            if let lastRemotePageCount = lastRemotePageCount {
+                totalCount = max(totalCount, lastRemotePageCount)
+            }
         }
         catch let error {
             print(error)

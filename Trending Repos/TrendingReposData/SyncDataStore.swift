@@ -53,7 +53,8 @@ public final class SyncDataStore {
                                     withQuery: term,
                                     dateFilter: dateFilter,
                                     page: page,
-                                    pageSize: pageSize) { (localResult) in
+                                    pageSize: pageSize,
+                                    lastRemotePageCount: result.totalCount) { (localResult) in
                                         onComplete(localResult)
                                 }
                                 
