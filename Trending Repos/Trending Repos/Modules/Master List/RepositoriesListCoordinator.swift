@@ -14,10 +14,9 @@ class RepositoriesListCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     weak var delegate: CoordinatorDelegate? = nil
     weak var listDelegate: RepositoriesListCoordinatorDelegate? = nil
-    var remoteDataStore: RemoteDataStore
+    var syncDataStore: SyncDataStore
     var remoteFileStore: RemoteFileStore
-    fileprivate var allRepositories: [Repository] = []
-    var filteredRepositories: [Repository] = []
+    var repositories: [Repository] = []
     
     var currentTerm = "" {
         didSet {
@@ -27,7 +26,7 @@ class RepositoriesListCoordinator: Coordinator {
     
     var mode: RepositoriesListMode = .all {
         didSet {
-            applyLocalFilters()
+            getRepositories(term: currentTerm, filter: dateFilter)
         }
     }
     
@@ -42,8 +41,9 @@ class RepositoriesListCoordinator: Coordinator {
         case favorites
     }
     
-    init(remoteDataStore: RemoteDataStore, remoteFileStore: RemoteFileStore) {
-        self.remoteDataStore = remoteDataStore
+    init(syncDataStore: SyncDataStore,
+         remoteFileStore: RemoteFileStore) {
+        self.syncDataStore = syncDataStore
         self.remoteFileStore = remoteFileStore
     }
     
@@ -52,19 +52,34 @@ class RepositoriesListCoordinator: Coordinator {
     }
     
     func getRepositories(term: String, filter: DateFilter) {
-        remoteDataStore.getRepositories(
-            withQuery: term,
-            dateFilter: filter) { [weak self] (result) in
-                
-                switch result {
-                case .succeeded(let result):
-                    self?.allRepositories = result.items
-                    self?.applyLocalFilters()
-                case .error(let error):
-                    // TODO: display error
-                    print(error)
-                }
+        
+        let resultHandler: (RemoteResult<Page<Repository>>) -> () = { [weak self] (result) in
+            
+            switch result {
+            case .succeeded(let result):
+                self?.repositories = result.items
+                self?.delegate?.update()
+            case .error(let error):
+                // TODO: display error
+                print(error)
+            }
         }
+        
+        switch mode {
+        case .all:
+            syncDataStore.getRepositories(
+                withQuery: term,
+                dateFilter: filter,
+                onComplete: resultHandler)
+        case .favorites:
+            syncDataStore.localDataStore.getRepositories(
+                withQuery: term,
+                dateFilter: filter,
+                isFavorite: true,
+                onComplete: resultHandler)
+        }
+        
+        
     }
     
     func getAvatar(url: String, onComplete: @escaping (RemoteResult<Data>) -> ()) {
@@ -81,19 +96,13 @@ class RepositoriesListCoordinator: Coordinator {
         listDelegate?.didSelectRepository(repository)
     }
     
-    func applyLocalFilters() {
-        var repositories = allRepositories
-        
-        switch mode {
-        case .all:
-            filteredRepositories = repositories
-        case .favorites:
-            filteredRepositories = repositories.filter({ (repo) -> Bool in
-                repo.isFavorite == true
-            })
+    func save(repository: Repository) {
+        do {
+            try syncDataStore.localDataStore.save(repository: repository, shouldUpdateFavorite: true)
+            
+        } catch let error {
+            print(error)
         }
-        
-        delegate?.update()
     }
 }
 

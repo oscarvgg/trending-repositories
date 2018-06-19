@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14270.9" systemVersion="" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LocalRepository" representedClassName="LocalRepository" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="forkCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="starCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocalUser" inverseName="repositories" inverseEntity="LocalUser" syncable="YES"/>
+    </entity>
+    <entity name="LocalUser" representedClassName="LocalUser" syncable="YES" codeGenerationType="class">
+        <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="username" attributeType="String" syncable="YES"/>
+        <relationship name="repositories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LocalRepository" inverseName="owner" inverseEntity="LocalRepository" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="LocalRepository" positionX="-54" positionY="18" width="128" height="195"/>
+        <element name="LocalUser" positionX="-63" positionY="-18" width="128" height="105"/>
+    </elements>
+</model>

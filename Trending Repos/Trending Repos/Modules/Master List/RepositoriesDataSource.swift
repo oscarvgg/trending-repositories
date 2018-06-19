@@ -23,7 +23,7 @@ class RepositoriesDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return coordinator.filteredRepositories.count ?? 0
+        return coordinator.repositories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,7 +33,7 @@ class RepositoriesDataSource: NSObject, UITableViewDataSource {
                 fatalError("Invalid cell")
         }
         
-        let repository = coordinator.filteredRepositories[indexPath.row]
+        let repository = coordinator.repositories[indexPath.row]
         cell.coordinator = coordinator
         cell.present(repository: repository)
         

@@ -69,7 +69,7 @@ class RepositoriesListViewController: UIViewController {
         let detailVC = (segue.destination as! UINavigationController).topViewController as! DetailViewController
         
         let appCoordinator = appDelegate.appCoordinator!
-        let repository = coordinator?.filteredRepositories[indexPath.row]
+        let repository = coordinator?.repositories[indexPath.row]
         
         appCoordinator.childCoordinators = appCoordinator.childCoordinators.filter({ (coordinator) -> Bool in
             detailVC.coordinator !== coordinator

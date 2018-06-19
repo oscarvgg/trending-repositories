@@ -42,6 +42,11 @@
 		5529296E20D905B800996FFD /* Delayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529296D20D905B800996FFD /* Delayable.swift */; };
 		5529297020D90EBC00996FFD /* RemoteFileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529296F20D90EBC00996FFD /* RemoteFileStore.swift */; };
 		5529297220D9140000996FFD /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5529297120D9140000996FFD /* Errors.swift */; };
+		554BB32520D926FB00038EF4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554BB32420D926FB00038EF4 /* CoreDataManager.swift */; };
+		554BB32820D9275C00038EF4 /* TrendingRepos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 554BB32620D9275C00038EF4 /* TrendingRepos.xcdatamodeld */; };
+		554BB32A20D9304F00038EF4 /* LocalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554BB32920D9304F00038EF4 /* LocalDataStore.swift */; };
+		554BB32C20D93A8C00038EF4 /* LocalRepository+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554BB32B20D93A8C00038EF4 /* LocalRepository+Update.swift */; };
+		556B5C1D20D949E100902F19 /* SyncDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556B5C1C20D949E100902F19 /* SyncDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +135,11 @@
 		5529296D20D905B800996FFD /* Delayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delayable.swift; sourceTree = "<group>"; };
 		5529296F20D90EBC00996FFD /* RemoteFileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFileStore.swift; sourceTree = "<group>"; };
 		5529297120D9140000996FFD /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		554BB32420D926FB00038EF4 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		554BB32720D9275C00038EF4 /* TrendingRepos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrendingRepos.xcdatamodel; sourceTree = "<group>"; };
+		554BB32920D9304F00038EF4 /* LocalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataStore.swift; sourceTree = "<group>"; };
+		554BB32B20D93A8C00038EF4 /* LocalRepository+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalRepository+Update.swift"; sourceTree = "<group>"; };
+		556B5C1C20D949E100902F19 /* SyncDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +230,9 @@
 				551A312320D80612003637A8 /* Formater+ISO8601.swift */,
 				551A312120D80386003637A8 /* RemoteDataStore.swift */,
 				5529296F20D90EBC00996FFD /* RemoteFileStore.swift */,
-				551A316820D8789A003637A8 /* Local Data Store */,
+				554BB32920D9304F00038EF4 /* LocalDataStore.swift */,
+				556B5C1C20D949E100902F19 /* SyncDataStore.swift */,
+				551A316820D8789A003637A8 /* CoreData */,
 				551A312B20D8095B003637A8 /* Entities */,
 				551A310620D80353003637A8 /* Info.plist */,
 			);
@@ -244,6 +256,7 @@
 				551A312520D80936003637A8 /* Entity.swift */,
 				551A312720D80943003637A8 /* User.swift */,
 				551A312920D80953003637A8 /* Repository.swift */,
+				554BB32B20D93A8C00038EF4 /* LocalRepository+Update.swift */,
 				551A312C20D80AAB003637A8 /* Page.swift */,
 			);
 			path = Entities;
@@ -285,11 +298,13 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		551A316820D8789A003637A8 /* Local Data Store */ = {
+		551A316820D8789A003637A8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				554BB32420D926FB00038EF4 /* CoreDataManager.swift */,
+				554BB32620D9275C00038EF4 /* TrendingRepos.xcdatamodeld */,
 			);
-			path = "Local Data Store";
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -502,11 +517,16 @@
 			files = (
 				551A312820D80943003637A8 /* User.swift in Sources */,
 				5529297020D90EBC00996FFD /* RemoteFileStore.swift in Sources */,
+				556B5C1D20D949E100902F19 /* SyncDataStore.swift in Sources */,
 				551A312420D80612003637A8 /* Formater+ISO8601.swift in Sources */,
+				554BB32A20D9304F00038EF4 /* LocalDataStore.swift in Sources */,
 				551A312D20D80AAB003637A8 /* Page.swift in Sources */,
 				551A312A20D80953003637A8 /* Repository.swift in Sources */,
 				551A312220D80386003637A8 /* RemoteDataStore.swift in Sources */,
+				554BB32520D926FB00038EF4 /* CoreDataManager.swift in Sources */,
+				554BB32820D9275C00038EF4 /* TrendingRepos.xcdatamodeld in Sources */,
 				551A312620D80936003637A8 /* Entity.swift in Sources */,
+				554BB32C20D93A8C00038EF4 /* LocalRepository+Update.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,6 +930,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		554BB32620D9275C00038EF4 /* TrendingRepos.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				554BB32720D9275C00038EF4 /* TrendingRepos.xcdatamodel */,
+			);
+			currentVersion = 554BB32720D9275C00038EF4 /* TrendingRepos.xcdatamodel */;
+			path = TrendingRepos.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 551A30D120D7FFA9003637A8 /* Project object */;
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 public final class User: Entity {
     
@@ -22,5 +23,20 @@ public final class User: Entity {
     
     init(username: String) {
         self.username = username
+    }
+    
+    init(managedObject: LocalUser) {
+        username = managedObject.username ?? ""
+        identifier = Int(managedObject.identifier)
+        avatarUrl = managedObject.avatarUrl
+    }
+    
+    func managedObject(context: NSManagedObjectContext) -> LocalUser {
+        let localUser = LocalUser(context: context)
+        localUser.identifier = Int64(identifier ?? 0)
+        localUser.username = username
+        localUser.avatarUrl = avatarUrl
+        
+        return localUser
     }
 }

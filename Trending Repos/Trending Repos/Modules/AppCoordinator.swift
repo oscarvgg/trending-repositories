@@ -17,11 +17,16 @@ class AppCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     
     var remoteDataStore: RemoteDataStore
+    var localDataStore: LocalDataStore
+    var syncDataStore: SyncDataStore
     var remoteFileStore: RemoteFileStore
     
     init(splitViewController: UISplitViewController) {
         self.splitViewController = splitViewController
         remoteDataStore = RemoteDataStore()
+        localDataStore = LocalDataStore()
+        syncDataStore = SyncDataStore(remoteStore: remoteDataStore,
+                                      localDataStore: localDataStore)
         remoteFileStore = RemoteFileStore()
     }
     
@@ -37,7 +42,7 @@ class AppCoordinator: Coordinator {
         }
         
         let masterCoordinator = RepositoriesListCoordinator(
-            remoteDataStore: remoteDataStore,
+            syncDataStore: syncDataStore,
             remoteFileStore: remoteFileStore)
         childCoordinators.append(masterCoordinator)
         masterListVC.coordinator = masterCoordinator

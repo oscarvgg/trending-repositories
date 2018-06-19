@@ -70,6 +70,7 @@ class RepositoryTableViewCell: UITableViewCell {
             return
         }
         repository.isFavorite = !repository.isFavorite
+        coordinator?.save(repository: repository)
         updateUI()
     }
     

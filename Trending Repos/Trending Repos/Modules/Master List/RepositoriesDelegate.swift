@@ -19,7 +19,7 @@ class RepositoriesDelegate: NSObject, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let repository = coordinator.filteredRepositories[indexPath.row]
+        let repository = coordinator.repositories[indexPath.row]
         coordinator.select(repository: repository)
     }
     

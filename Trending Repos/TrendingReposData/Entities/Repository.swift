@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 public final class Repository: Entity {
     public var identifier: Int?
@@ -35,5 +36,34 @@ public final class Repository: Entity {
     init(name: String, owner: User) {
         self.name = name
         self.owner = owner
+    }
+    
+    init(managedObject: LocalRepository) {
+        identifier = Int(managedObject.identifier)
+        name = managedObject.name ?? ""
+        owner = User(managedObject: managedObject.owner!)
+        description = managedObject.summary
+        starCount = Int(managedObject.starCount)
+        language = managedObject.language
+        forkCount = Int(managedObject.forkCount)
+        url = managedObject.url
+        createdAt = managedObject.createdAt ?? Date()
+        isFavorite = managedObject.isFavorite
+    }
+    
+    func managedObject(context: NSManagedObjectContext) -> LocalRepository {
+        let localRepository = LocalRepository(context: context)
+        localRepository.identifier = Int64(identifier ?? 0)
+        localRepository.name = name
+        localRepository.owner = owner.managedObject(context: context)
+        localRepository.summary = description
+        localRepository.starCount = Int64(starCount)
+        localRepository.language = language
+        localRepository.forkCount = Int64(forkCount)
+        localRepository.url = url
+        localRepository.createdAt = createdAt
+        localRepository.isFavorite = isFavorite
+        
+        return localRepository
     }
 }
